@@ -33,8 +33,4 @@ public class GeneralConfiguration {
     public void setRandom(String random) {
         this.random = random;
     }
-
-    public void printFullName(){
-        System.out.println(name + " " + lastName);
-    }
 }

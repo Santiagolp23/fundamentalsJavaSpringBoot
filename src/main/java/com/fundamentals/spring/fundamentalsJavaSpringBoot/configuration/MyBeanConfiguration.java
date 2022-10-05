@@ -20,4 +20,12 @@ public class MyBeanConfiguration {
     public MyBeanWithDependency beanOp2(MyOperation myOperation) {
         return new MyBeanWithDependencyImp(myOperation);
     }
+
+    @Bean
+    public MyBeanWithProperties beanProp(GeneralConfiguration generalConfiguration) {
+        return new MyBeanWithPropertiesImpl(generalConfiguration);
+    }
+
+
 }
+
