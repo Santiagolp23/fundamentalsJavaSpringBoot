@@ -1,10 +1,14 @@
 package com.fundamentals.spring.fundamentalsJavaSpringBoot.configuration;
 
+import com.fundamentals.spring.fundamentalsJavaSpringBoot.pojo.UserPojo;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix = "person")
+@EnableConfigurationProperties(UserPojo.class)
+
 public class GeneralConfiguration {
     private String name;
     private String lastName;
