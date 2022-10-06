@@ -3,7 +3,7 @@ package com.fundamentals.spring.fundamentalsJavaSpringBoot.bean;
 import com.fundamentals.spring.fundamentalsJavaSpringBoot.configuration.GeneralConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MyBeanWithPropertiesImpl implements MyBeanWithProperties{
+public class MyBeanWithPropertiesImpl implements MyBeanWithProperties {
     String name;
     String lastname;
     private GeneralConfiguration generalConfiguration;
@@ -11,8 +11,8 @@ public class MyBeanWithPropertiesImpl implements MyBeanWithProperties{
     @Autowired
     public MyBeanWithPropertiesImpl(GeneralConfiguration generalConfiguration) {
         this.generalConfiguration = generalConfiguration;
-        name = generalConfiguration.getName();
-        lastname = generalConfiguration.getLastName();
+        this.name = generalConfiguration.getName();
+        this.lastname = generalConfiguration.getLastName();
     }
 
     @Override
