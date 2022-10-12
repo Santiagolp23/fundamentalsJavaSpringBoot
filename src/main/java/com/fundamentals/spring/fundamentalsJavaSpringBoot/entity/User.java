@@ -1,5 +1,6 @@
 package com.fundamentals.spring.fundamentalsJavaSpringBoot.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -8,31 +9,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id-user", nullable = false, unique = true)
+    @Column(name = "id_user", nullable = false, unique = true)
     private Long id;
-
     @Column(length = 50)
     private String name;
-    @Column(length = 50)
+    @Column(length = 50, nullable = false, unique = true)
     private String email;
-
-    private LocalDate birthday;
-
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
-    private List<Post> posts = new ArrayList<>();
+    private List<Posts> posts = new ArrayList<>();
 
     public User() {
     }
 
-    public User(Long id, String name, String email) {
-        this.id = id;
+    public User(String name, String email, LocalDate birthDate) {
         this.name = name;
         this.email = email;
+        this.birthDate = birthDate;
     }
 
     public Long getId() {
@@ -59,20 +58,16 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getBirthday() {
-        return birthday;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public List<Post> getPosts() {
+    public List<Posts> getPosts() {
         return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
     }
 
     @Override
@@ -81,7 +76,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", birthday=" + birthday +
+                ", birthDate=" + birthDate +
                 ", posts=" + posts +
                 '}';
     }
