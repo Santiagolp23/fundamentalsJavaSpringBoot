@@ -62,7 +62,8 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
         User user7 = new User("Enrique", "enrique@domain.com", LocalDate.of(2021, 11, 12));
         User user8 = new User("Luis", "luis@domain.com", LocalDate.of(2021, 2, 27));
         User user9 = new User("Paola", "paola@domain.com", LocalDate.of(2021, 4, 10));
-        List<User> list = Arrays.asList(user1, user2, user3, user4, user5, user6, user7, user8, user9);
+        User user10 = new User("Paola", "paola2@domain.com", LocalDate.of(2021, 4, 10));
+        List<User> list = Arrays.asList(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10);
         userRepository.saveAll(list);
         }
 
