@@ -50,6 +50,7 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
         saveUserInDataBase();
         getInformationJpql();
         findByNameSorted();
+        previousExamples();
     }
 
     private void saveUserInDataBase() {
@@ -79,6 +80,7 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
 
     public void previousExamples() {
         myBeanWithDependency.printWithDependency();
+        myBeanWithProperties.printName();
 
         try {
             int value = 10 / 0;
