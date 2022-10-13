@@ -48,6 +48,8 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
     @Override
     public void run(String... args) {
         saveUserInDataBase();
+        getInformationJpql();
+        findByNameSorted();
     }
 
     private void saveUserInDataBase() {
@@ -62,6 +64,16 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
         User user9 = new User("Paola", "paola@domain.com", LocalDate.of(2021, 4, 10));
         List<User> list = Arrays.asList(user1, user2, user3, user4, user5, user6, user7, user8, user9);
         userRepository.saveAll(list);
+        }
+
+        public void getInformationJpql(){
+        LOGGER.info("User with the method getInformationJpql" +
+                userRepository.findByUserEmail("paola@domain.com")
+                .orElseThrow(() -> new RuntimeException("User couldn't be found")));
+        }
+
+        public void findByNameSorted() {
+         LOGGER.info("users found by name and sorted: " + userRepository.findByNameOrderByNameAsc("Paola"));
         }
 
     public void previousExamples() {
