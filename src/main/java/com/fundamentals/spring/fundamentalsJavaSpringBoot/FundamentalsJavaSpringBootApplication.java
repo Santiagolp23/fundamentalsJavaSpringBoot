@@ -48,9 +48,7 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
     @Override
     public void run(String... args) {
         saveUserInDataBase();
-        getInformationJpql();
-        findByNameSorted();
-        previousExamples();
+        userRepository.findByNameLike("%arc%").forEach(u -> LOGGER.info(("user findByNameLike: " + u)));
     }
 
     private void saveUserInDataBase() {
@@ -66,21 +64,24 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
         User user10 = new User("Paola", "paola2@domain.com", LocalDate.of(2021, 4, 10));
         List<User> list = Arrays.asList(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10);
         userRepository.saveAll(list);
-        }
+    }
 
-        public void getInformationJpql(){
+    public void getInformationJpql() {
         LOGGER.info("User with the method getInformationJpql" +
                 userRepository.findByUserEmail("paola@domain.com")
-                .orElseThrow(() -> new RuntimeException("User couldn't be found")));
-        }
+                        .orElseThrow(() -> new RuntimeException("User couldn't be found")));
+    }
 
-        public void findByNameSorted() {
-         LOGGER.info("users found by name and sorted: " + userRepository.findByNameOrderByNameAsc("Paola"));
-        }
+    public void findByNameSorted() {
+        LOGGER.info("users found by name and sorted: " + userRepository.findByNameOrderByNameAsc("Paola"));
+    }
 
     public void previousExamples() {
         myBeanWithDependency.printWithDependency();
         myBeanWithProperties.printName();
+        saveUserInDataBase();
+        getInformationJpql();
+        findByNameSorted();
 
         try {
             int value = 10 / 0;
