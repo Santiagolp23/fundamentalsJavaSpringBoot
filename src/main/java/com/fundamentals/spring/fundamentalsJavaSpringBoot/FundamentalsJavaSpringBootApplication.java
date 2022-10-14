@@ -48,7 +48,7 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
     @Override
     public void run(String... args) {
         saveUserInDataBase();
-        userRepository.findByNameLikeOrderByIdDesc("%i%").forEach(u -> LOGGER.info(("user findByNameLikeOrderByIdDesc: " + u)));
+        userRepository.findByNameContainingOrderByIdDesc("i").forEach(u -> LOGGER.info(("user findByNameLikeOrderByIdDesc: " + u)));
     }
 
     private void saveUserInDataBase() {
