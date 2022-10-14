@@ -48,7 +48,7 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
     @Override
     public void run(String... args) {
         saveUserInDataBase();
-        userRepository.findByNameLike("%arc%").forEach(u -> LOGGER.info(("user findByNameLike: " + u)));
+        userRepository.findByNameOrEmail("", "john@domain.com").forEach(u -> LOGGER.info(("user findByNameOrEmail: " + u)));
     }
 
     private void saveUserInDataBase() {
