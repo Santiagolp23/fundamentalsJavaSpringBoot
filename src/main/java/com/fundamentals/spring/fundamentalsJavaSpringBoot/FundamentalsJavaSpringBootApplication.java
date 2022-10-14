@@ -48,7 +48,7 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
     @Override
     public void run(String... args) {
         saveUserInDataBase();
-        userRepository.findByBirthDateBetween(LocalDate.of(2021,02,25), LocalDate.of(2021,10,25)).forEach(u -> LOGGER.info(("user findByBirthDateBetween: " + u)));
+        userRepository.findByNameLikeOrderByIdDesc("%i%").forEach(u -> LOGGER.info(("user findByNameLikeOrderByIdDesc: " + u)));
     }
 
     private void saveUserInDataBase() {
