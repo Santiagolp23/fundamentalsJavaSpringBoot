@@ -48,7 +48,7 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
     @Override
     public void run(String... args) {
         saveUserInDataBase();
-        userRepository.findByNameContainingAndBirthDateBetween("i", LocalDate.of(2021, 6, 1), LocalDate.of(2021, 9, 30)).forEach(u -> LOGGER.info(("user findByNameContainingAndBirthDateBetween: " + u)));
+        LOGGER.info("User gotten by getAllByBirthDateAndEmail method: " + userRepository.getAllByBirthDateAndEmail(LocalDate.of(2021, 3, 13), "john@domain.com").orElseThrow(() -> new RuntimeException("User couldn't be found")));
     }
 
     private void saveUserInDataBase() {
@@ -82,6 +82,7 @@ public class FundamentalsJavaSpringBootApplication implements CommandLineRunner 
         saveUserInDataBase();
         getInformationJpql();
         findByNameSorted();
+        userRepository.findByNameContainingAndBirthDateBetween("i", LocalDate.of(2021, 6, 1), LocalDate.of(2021, 9, 30)).forEach(u -> LOGGER.info(("user findByNameContainingAndBirthDateBetween: " + u)));
 
         try {
             int value = 10 / 0;
