@@ -1,11 +1,11 @@
 package com.fundamentals.spring.fundamentalsJavaSpringBoot.configuration;
 
 import com.fundamentals.spring.fundamentalsJavaSpringBoot.bean.*;
-import org.springframework.boot.jdbc.DataSourceBuilder;
+import com.fundamentals.spring.fundamentalsJavaSpringBoot.service.UserService;
+import com.fundamentals.spring.fundamentalsJavaSpringBoot.usecase.GetUser;
+import com.fundamentals.spring.fundamentalsJavaSpringBoot.usecase.GetUserImplement;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.sql.DataSource;
 
 @Configuration()
 public class MyBeanConfiguration {
@@ -29,7 +29,9 @@ public class MyBeanConfiguration {
         return new MyBeanWithPropertiesImpl(generalConfiguration);
     }
 
-
-
+    @Bean
+    public GetUser getUser(UserService userService) {
+        return new GetUserImplement(userService);
+    }
 }
 
