@@ -1,4 +1,4 @@
-package com.fundamentals.spring.fundamentalsJavaSpringBoot.usecase;
+package com.fundamentals.spring.fundamentalsJavaSpringBoot.usecases;
 
 import com.fundamentals.spring.fundamentalsJavaSpringBoot.entity.User;
 import com.fundamentals.spring.fundamentalsJavaSpringBoot.service.UserService;
