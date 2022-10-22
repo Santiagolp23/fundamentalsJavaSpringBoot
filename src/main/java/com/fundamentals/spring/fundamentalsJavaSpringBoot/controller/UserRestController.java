@@ -1,10 +1,12 @@
 package com.fundamentals.spring.fundamentalsJavaSpringBoot.controller;
 
 import com.fundamentals.spring.fundamentalsJavaSpringBoot.entity.User;
+import com.fundamentals.spring.fundamentalsJavaSpringBoot.repository.UserRepository;
 import com.fundamentals.spring.fundamentalsJavaSpringBoot.usecases.CreateUser;
 import com.fundamentals.spring.fundamentalsJavaSpringBoot.usecases.DeleteUser;
 import com.fundamentals.spring.fundamentalsJavaSpringBoot.usecases.GetUser;
 import com.fundamentals.spring.fundamentalsJavaSpringBoot.usecases.UpdateUser;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +22,15 @@ public class UserRestController {
     private CreateUser createUser;
     private DeleteUser deleteUser;
     private UpdateUser updateUser;
+    private UserRepository userRepository;
 
-    public UserRestController(GetUser getUser, CreateUser createUser, DeleteUser deleteUser, UpdateUser updateUser) {
+    public UserRestController(GetUser getUser, CreateUser createUser, DeleteUser deleteUser, UpdateUser updateUser,
+                              UserRepository userRepository) {
         this.getUser = getUser;
         this.createUser = createUser;
         this.deleteUser = deleteUser;
         this.updateUser = updateUser;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -49,8 +54,9 @@ public class UserRestController {
         return new ResponseEntity<>(updateUser.update(newUser ,id),HttpStatus.OK);
     }
 
-
-
-
+    @GetMapping("/pageable")
+    List<User> getAllUsersPageable(@RequestParam int page, @RequestParam int size) {
+        return userRepository.findAll(PageRequest.of(page, size)).getContent();
+    }
 
 }
